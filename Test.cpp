@@ -3,6 +3,8 @@
 #include "Input.h"
 #include "Time.h"
 #include "Random.h"
+#include "World.h"
+#include "CircleShape.h"
 
 Test::Test()
 {
@@ -11,9 +13,10 @@ Test::Test()
 
 Test::~Test()
 {
-	if (m_time) delete m_time;
-	if (m_input) delete m_input;
+	if (m_world) delete m_world;
 	if (m_graphics) delete m_graphics;
+	if (m_input) delete m_input;
+	if (m_time) delete m_time;
 }
 
 void Test::Initialize()
@@ -22,6 +25,8 @@ void Test::Initialize()
 	m_graphics->CreateWindow("Physics", 800, 600);
 	m_input = new Input();
 	m_time = new Time();
+	m_world = new World();
+
 }
 
 void Test::Run()
@@ -31,11 +36,11 @@ void Test::Run()
 	m_input->Update();
 	m_time->Update();
 
-	m_graphics->SetColor({ 0, 0, 0, 0 });
+	m_graphics->ConvertColor({ 1, 1, 1, 1 });
 	m_graphics->Clear();
-	
-	m_graphics->DrawCircle(m_input->GetMousePosition(), 30, {randomf(), randomf(), randomf(), 1});
-	
+
+	m_graphics->DrawCircle(m_input->GetMousePosition(), 30, { randomf(), randomf(), randomf(), 1 });
+
 	m_graphics->Present();
 }
 

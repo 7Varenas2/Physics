@@ -155,20 +155,31 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="CircleShape.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ParticleTest.cpp" />
+    <ClCompile Include="PhysicsObject.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="CircleShape.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="ParticleTest.h" />
+    <ClInclude Include="PhysicsObject.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
