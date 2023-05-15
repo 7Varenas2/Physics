@@ -1,43 +1,58 @@
 #include "World.h"
+#include "Body.h"
+#include "ForceGenerator.h" 
+
+glm::vec2 World::gravity{ 0,9.8 };
 
 World::~World()
 {
 	// Delete all the objects
 	// Clear the objects from the list clear()
-	for (auto& i : m_objects)
+	for (auto body : m_bodies)
 	{
-		delete i;
+		delete body;
 	}
-	m_objects.clear();
-	
+	m_bodies.clear();
+
 }
 
 void World::Step(float dt)
 {
-	// Call step() on all the objects
-	for (auto& i : m_objects)
+	if (!m_bodies.empty() && !m_forceGenerators.empty())
 	{
-		i->Step(dt);
+		std::vector<Body*> bodies(m_bodies.begin(), m_bodies.end());
+		for (auto forceGenerator : m_forceGenerators)
+		{
+			forceGenerator->Apply(bodies);
+		}
 	}
+	// Call step() on all the objects
+	for (auto body : m_bodies) body->Step(dt);
+
 }
 
 void World::Draw(Graphics* graphics)
 {
 	// Call Draw() on all objects
-	for (auto& i : m_objects)
+	for (auto body : m_bodies)
 	{
-		i->Draw(graphics);
+		body->Draw(graphics);
 	}
 }
 
-void World::AddPhysicsObject(PhysicsObject* po)
+void World::AddBody(Body* body)
 {
 	// Push back the po onto the objects list
-	m_objects.push_back(po);
+	m_bodies.push_back(body);
 }
 
-void World::RemovePhysicsObject(PhysicsObject* po)
+void World::RemoveBody(Body* body)
 {
 	// Remove po from the objects list
-	m_objects.remove(po);
+	m_bodies.remove(body);
+}
+
+void World::AddForceGenerator(ForceGenerator* forceGenerator)
+{
+	m_forceGenerators.push_back(forceGenerator);
 }

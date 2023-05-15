@@ -2,13 +2,14 @@
 #include "Random.h"
 #include "Test.h"
 #include "ParticleTest.h"
+#include "ForceTest.h"
 #include <iostream>
 #include <SDL.h>
 #include <glm/glm.hpp>
 
 int main(int argc, char* argv[]) 
 {
-	Test* test = new ParticleTest();
+	Test* test = new ForceTest();
 	test->Initialize();
 	while (!test->IsQuit()) { test->Run(); }
 	delete test;

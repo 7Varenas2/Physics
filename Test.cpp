@@ -14,8 +14,8 @@ Test::Test()
 Test::~Test()
 {
 	if (m_world) delete m_world;
-	if (m_graphics) delete m_graphics;
-	if (m_input) delete m_input;
+	if (m_graphics) delete m_graphics; 
+		if (m_input) delete m_input;
 	if (m_time) delete m_time;
 }
 
@@ -25,22 +25,29 @@ void Test::Initialize()
 	m_graphics->CreateWindow("Physics", 800, 600);
 	m_input = new Input();
 	m_time = new Time();
+	m_time->SetFixedDeltaTime(1/10.0f);
 	m_world = new World();
 
 }
 
 void Test::Run()
 {
+	// Game loop
 	Update();
+	// Fixed time update
 	m_fixedTime += m_time->TimeDelta();
-	FixedUpdate();
+	while (m_fixedTime >= m_time->TimeDelta())
+	{
+		FixedUpdate();
+		m_fixedTime -= m_time->TimeDelta();
+	}
 
 	// Render
 	PreRender();
 	Render();
 	PostRender();
 
-	m_graphics->DrawCircle(m_input->GetMousePosition(), 30, { randomf(), randomf(), randomf(), 1 });
+	//m_graphics->DrawCircle(m_input->GetMousePosition(), 30, { randomf(), randomf(), randomf(), 1 });
 
 }
 
