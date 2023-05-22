@@ -1,11 +1,11 @@
-#include "ForceTest.h"
-#include "Graphics.h"
-#include "Input.h"
-#include "Time.h"
-#include "Random.h"
-#include "CircleShape.h"
-#include "Body.h"
-#include "GravitationalForce.h"
+#include "..\Tests\ForceTest.h"
+#include "..\Engine\Graphics.h"
+#include "..\Engine\Input.h"
+#include "..\Engine\Time.h"
+#include "..\Engine\Random.h"
+#include "..\Physics\CircleShape.h"
+#include "..\Engine\Body.h"
+#include "..\Physics\GravitationalForce.h"
 
 void ForceTest::Initialize()
 {

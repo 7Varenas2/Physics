@@ -1,6 +1,7 @@
-#include "World.h"
-#include "Body.h"
-#include "ForceGenerator.h" 
+#include "..\Engine\World.h"
+#include "..\Engine\World.h"
+#include "..\Physics\ForceGenerator.h" 
+#include "..\Physics\Joint.h"
 
 glm::vec2 World::gravity{ 0,9.8 };
 
@@ -28,16 +29,16 @@ void World::Step(float dt)
 	}
 	// Call step() on all the objects
 	for (auto body : m_bodies) body->Step(dt);
+	for (auto joint : m_joints) joint->Step(dt);
 
 }
 
 void World::Draw(Graphics* graphics)
 {
-	// Call Draw() on all objects
-	for (auto body : m_bodies)
-	{
-		body->Draw(graphics);
-	}
+	//// Call Draw() on all objects
+	for (auto joint : m_joints) joint->Draw(graphics);
+	for (auto forceGenerator : m_forceGenerators) forceGenerator->Draw(graphics);
+	for (auto body : m_bodies) body->Draw(graphics);
 }
 
 void World::AddBody(Body* body)
@@ -50,6 +51,16 @@ void World::RemoveBody(Body* body)
 {
 	// Remove po from the objects list
 	m_bodies.remove(body);
+}
+
+void World::AddJoint(Joint* joint)
+{
+	m_joints.push_back(joint);
+}
+
+void World::RemoveJoint(Joint* joint)
+{
+	m_joints.remove(joint);
 }
 
 void World::AddForceGenerator(ForceGenerator* forceGenerator)

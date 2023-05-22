@@ -1,5 +1,5 @@
 #pragma once
-#include "Test.h"
+#include "..\Tests\Test.h"
 
 class ParticleTest : public Test
 {

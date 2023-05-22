@@ -1,4 +1,5 @@
 #pragma once
+#include "..\Engine\Shape.h"
 #include <glm/glm.hpp>
 
 class Body
@@ -13,6 +14,7 @@ public:
 
 
 public:
+
 	Body(class Shape* shape, const glm::vec2& position, const glm::vec2& velocity = { 0,0 }, float mass = 1, Type type = Type::DYNAMIC) :
 		shape{ shape },
 		position{ position },
@@ -20,13 +22,14 @@ public:
 		mass{ mass },
 		type{ type }
 	{
-		if (type == STATIC) mass = 0;
+		//if (type == STATIC) mass = 0;
 		invMass = (mass == 0) ? 0 : 1 / mass;
 	}
 
 	void ApplyForce(const glm::vec2& force);
 	void Step(float dt);
 	void Draw(class Graphics* graphics);
+	bool Intersects(class Body* body);
 
 	void ClearForce() { force = glm::vec2(0, 0); }
 

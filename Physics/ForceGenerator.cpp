@@ -1,4 +1,4 @@
-#include "ForceGenerator.h"
+#include "..\Physics\ForceGenerator.h"
 
 
 void ForceGenerator::Draw(Graphics* graphics)

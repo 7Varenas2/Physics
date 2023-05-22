@@ -1,5 +1,5 @@
 #pragma once
-#include "World.h"
+#include "..\Engine\World.h"
 
 class Test
 {
@@ -10,10 +10,10 @@ public:
 	virtual void Initialize();
 	virtual void Run();
 
-	virtual void Update();
-	virtual void FixedUpdate() = 0;
-	virtual void PreRender();
 	virtual void Render() = 0;
+	virtual void FixedUpdate() = 0;
+	virtual void Update();
+	virtual void PreRender();
 	virtual void PostRender();
 
 

@@ -1,10 +1,10 @@
-#include "ParticleTest.h"
-#include "Graphics.h"
-#include "Input.h"
-#include "Time.h"
-#include "Random.h"
-#include "CircleShape.h"
-#include "Body.h"
+#include "..\Tests\ParticleTest.h"
+#include "..\Engine\Graphics.h"
+#include "..\Engine\Input.h"
+#include "..\Engine\Time.h"
+#include "..\Engine\Random.h"
+#include "..\Physics\CircleShape.h"
+#include "..\Engine\Body.h"
 
 void ParticleTest::Initialize()
 {
