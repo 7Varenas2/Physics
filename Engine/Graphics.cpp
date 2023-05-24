@@ -18,6 +18,8 @@ void Graphics::CreateWindow(const char* title, int width, int height, float size
 {
 	m_width = width;
 	m_height = height;
+	float ratio = m_width / (float)m_height;
+	m_extents = glm::vec2{ size * ratio, size };
 
 	m_window = SDL_CreateWindow(title,
 		SDL_WINDOWPOS_UNDEFINED,

@@ -11,12 +11,12 @@ void JointTest::Initialize()
 {
 	Test::Initialize();
 
-	m_anchor = new Body(new CircleShape(20, { 1, 1, 1, 1 }), { 400, 100 }, { 0, 0 }, 0, Body::KINEMATIC);
+	m_anchor = new Body(new CircleShape(1, { 1, 1, 1, 1 }), { 0, 0 }, { 0, 0 }, 0, Body::KINEMATIC); // was 400 100
 	m_world->AddBody(m_anchor);
 
 	auto prevBody = m_anchor;
 
-	auto body = new Body(new CircleShape(20, { 1, 1, 1, 1 }), { 400, 200 }, { 0, 0 }, 1, Body::DYNAMIC);
+	auto body = new Body(new CircleShape(0.5, { 1, 1, 1, 1 }), { 0, 0 }, { 0, 0 }, 1, Body::DYNAMIC);
 	body->gravityScale = 250;
 	body->damping = BODY_DAMPING;
 	m_world->AddBody(body);
@@ -27,7 +27,7 @@ void JointTest::Initialize()
 	// SECOND BODY
 	prevBody = body;
 
-	body = new Body(new CircleShape(20, { 1, 1, 1, 1 }), { 400, 200 }, { 0, 0 }, 1, Body::DYNAMIC);
+	body = new Body(new CircleShape(20, { 1, 1, 1, 1 }),  { 0, 0 });
 	body->gravityScale = 250;
 	body->damping = BODY_DAMPING;
 	m_world->AddBody(body);
