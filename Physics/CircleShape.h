@@ -14,5 +14,4 @@ public:
 public:
 	float radius{ 1 };
 
-	// Inherited via Shape
 };

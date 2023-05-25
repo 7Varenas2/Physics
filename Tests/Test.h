@@ -1,5 +1,10 @@
 #pragma once
 #include "..\Engine\World.h"
+#include "..\Engine\Graphics.h"
+#include "..\Engine\Input.h"
+#include "..\Engine\Random.h"
+#include "..\Engine\Time.h"
+
 
 class Test
 {
