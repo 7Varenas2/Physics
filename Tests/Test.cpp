@@ -14,9 +14,9 @@ Test::Test()
 Test::~Test()
 {
 	if (m_world) delete m_world;
-	if (m_graphics) delete m_graphics;
 	if (m_input) delete m_input;
 	if (m_time) delete m_time;
+	if (m_graphics) delete m_graphics;
 }
 
 void Test::Initialize()
@@ -25,7 +25,7 @@ void Test::Initialize()
 	m_graphics->CreateWindow("Physics", 800, 600);
 	m_input = new Input();
 	m_time = new Time();
-	m_time->SetFixedDeltaTime(1 / 10.0f);
+	m_time->SetFixedDeltaTime(1 / 60.0f);
 	m_world = new World();
 
 #if defined(POINT_FORCE)

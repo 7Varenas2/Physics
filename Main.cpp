@@ -5,7 +5,7 @@
 
 int main(int argc, char* args[])
 {
-    Test* test = new CollisionTest();
+    Test* test = new JointTest();
 
     test->Initialize();
     while (!test->IsQuit()) test->Run();

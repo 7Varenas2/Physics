@@ -1,6 +1,7 @@
 #include "Collision.h"
 #include "..\..\Physics\CircleShape.h"
 #include "..\..\Engine\Random.h"
+#include "..\..\Engine\Body.h"
 
 namespace Collision
 {
@@ -41,11 +42,13 @@ namespace Collision
 			direction = { randomf(-0.05f, 0.05f), randomf(-0.05f,0.05f) };
 		}
 
-		
+
 		float radius = ((CircleShape*)bodyA->shape)->radius + ((CircleShape*)bodyB->shape)->radius;
 		contact.depth = radius - distance;
 
 		contact.normal = glm::normalize(direction);
+
+		contact.restitution = (contact.bodyA->restitution + contact.bodyB->restitution) * 0.5f;
 
 		return contact;
 	}
@@ -59,6 +62,25 @@ namespace Collision
 
 			contact.bodyA->position += seperation * contact.bodyA->invMass;
 			contact.bodyB->position -= seperation * contact.bodyB->invMass;
+		}
+	}
+
+	void ResolveContacts(std::vector<Contact>& contacts)
+	{
+		for (auto& contact : contacts)
+		{
+			glm::vec2 relativeVelocity = contact.bodyA->velocity - contact.bodyB->velocity;
+			float normalVelocity = glm::dot(relativeVelocity, contact.normal);
+
+			if (normalVelocity > 0) continue;
+			float totalInvMass = contact.bodyA->invMass + contact.bodyB->invMass;
+			float impulseMagnitude = -(1.0f + contact.restitution) * normalVelocity / totalInvMass;
+
+			glm::vec2 impulse = contact.normal * impulseMagnitude;
+
+			contact.bodyA->velocity += (impulse * contact.bodyA->invMass);
+			contact.bodyB->velocity -= (impulse * contact.bodyB->invMass);
+
 		}
 	}
 

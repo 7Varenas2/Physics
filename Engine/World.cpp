@@ -35,9 +35,11 @@ void World::Step(float dt)
 	for (auto body : bodies) body->Step(dt);
 
 	// Collision
-	std::vector<Contact> contacts;
-	Collision::CreateContacts(bodies, contacts);
-	Collision::SeparateContacts(contacts);
+	//std::vector<Contact> contacts;
+	//Collision::CreateContacts(bodies, contacts);
+	//Collision::SeparateContacts(contacts);
+	//Collision::ResolveContacts(contacts);
+
 }
 
 void World::Draw(Graphics* graphics)
